@@ -22,11 +22,7 @@ public class JwtService {
     private long validTokenTime;
 
     public boolean validateToken(String token) {
-        try {
-            getClaims(token);
-        } catch (ExpiredJwtException e) {
-
-        }
+        getClaims(token);
         return true;
     }
 
