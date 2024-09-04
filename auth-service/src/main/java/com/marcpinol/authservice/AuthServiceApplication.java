@@ -25,7 +25,8 @@ public class AuthServiceApplication {
     public ApplicationRunner devApplicationRunner() {
         // Load initial data into the database
         return arg -> {
-            userService.create(new User().withUsername("admin").withPassword("admin").withAuthorities("ROLE_ADMIN"));
+            userService.create(new User().withUsername("admin").withPassword("$2a$12$t3uTcoMrQIQDBPOMgSxF/.c/oCKZ9H.dzgd4v.X224LHLavgVLC.2").withAuthorities("ROLE_ADMIN"));
+            userService.create(new User().withUsername("user").withPassword("$2a$12$CTlxj43wqejUbLdixrJGGuyKzlqU2okISp5vk2rGbJxcud2m8r0GG").withAuthorities("ROLE_VIEWER"));
         };
     }
 
