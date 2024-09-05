@@ -1,5 +1,6 @@
 package com.marcpinol.authservice.dto;
 
+import jakarta.validation.GroupSequence;
 import jakarta.validation.constraints.AssertTrue;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
@@ -10,6 +11,7 @@ import lombok.With;
 
 import java.util.List;
 
+@GroupSequence({UserRequest.class, UserRequest.ExtendedValidation.class})
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,10 +24,13 @@ public class UserRequest {
     @NotBlank
     private String repeatPassword;
     @NotEmpty
-    private List<String> authorities;
+    private List<String> roles;
 
-    @AssertTrue(message = "Passwords must be equal")
+    @AssertTrue(message = "Passwords must be equal", groups = ExtendedValidation.class)
     public boolean isEqualPassword() {
         return password.equals(repeatPassword);
+    }
+
+    public interface ExtendedValidation {
     }
 }

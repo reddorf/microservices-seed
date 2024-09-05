@@ -24,4 +24,4 @@ com:
     marcpinol:
         jwt:
             secret: QHsyZFY/O11WNnRUTVEzeTokQ1JDUnBpR3RwIUVGKHA=
-            valid-token-time: 36_00
+            valid-token-time: 3600_00

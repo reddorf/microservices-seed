@@ -1,10 +1,7 @@
 package com.marcpinol.authservice.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.With;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +26,7 @@ public class User implements UserDetails {
 
     @Column(name = "USER_NAME", unique = true, nullable = false)
     private String username;
+    @Setter
     @Column(name = "PASSWORD", unique = false, nullable = false)
     private String password;
     @Column(name = "AUTHORITIES", unique = false, nullable = false)

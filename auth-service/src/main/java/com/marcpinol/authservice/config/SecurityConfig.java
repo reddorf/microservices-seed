@@ -46,8 +46,8 @@ public class SecurityConfig {
                 .formLogin(FormLoginConfigurer::disable)
                 .authorizeHttpRequests(
                         (authz) -> authz
-                                .requestMatchers(HttpMethod.GET, "/api/users/**").hasAnyAuthority("ROLE_ADMIN", "ROLE_VIEWER")
-                                .requestMatchers("/api/users/**").hasAuthority("ROLE_ADMIN")
+                                .requestMatchers(HttpMethod.GET, "/api/users/**").hasAnyRole("ADMIN", "VIEWER")
+                                .requestMatchers("/api/users/**").hasRole("ADMIN")
                                 .requestMatchers("/api/login").permitAll()
                                 .anyRequest().authenticated()
                 )

@@ -23,14 +23,14 @@ public class UserController {
     @GetMapping("/{id}")
     public UserResponse getUser(@PathVariable Long id) {
         User user = userService.get(id);
-        return new UserResponse().withId(user.getId()).withUsername(user.getUsername());
+        return new UserResponse().withId(user.getId()).withUsername(user.getUsername()).withRoles(user.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList());
     }
 
     @GetMapping
     public List<UserResponse> getUsers() {
         return userService.getAll().stream().map(user -> new UserResponse()
                         .withId(user.getId())
-                        .withUsername(user.getUsername()))
+                        .withUsername(user.getUsername()).withRoles(user.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList()))
                 .toList();
     }
 
@@ -39,11 +39,11 @@ public class UserController {
     public UserResponse createUser(@Valid @RequestBody UserRequest userRequest) {
         User user = new User().withUsername(userRequest.getUsername())
                 .withPassword(userRequest.getPassword())
-                .withAuthorities(String.join(";", userRequest.getAuthorities()));
+                .withAuthorities(String.join(";", userRequest.getRoles()));
         User createdUser = userService.create(user);
         return new UserResponse()
                 .withId(createdUser.getId())
                 .withUsername(createdUser.getUsername())
-                .withAuthorities(createdUser.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList());
+                .withRoles(createdUser.getAuthorities().stream().map(GrantedAuthority::getAuthority).toList());
     }
 }

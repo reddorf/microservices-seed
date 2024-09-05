@@ -28,15 +28,14 @@ public class JwtService {
 
     public String generateToken(Authentication authentication) {
         String username = authentication.getName();
-        String token = Jwts.builder()
+
+        return Jwts.builder()
                 .subject(username)
                 .claim("authorities", authentication.getAuthorities())
                 .issuedAt(new Date(System.currentTimeMillis()))
                 .expiration(new Date(System.currentTimeMillis() + validTokenTime))
                 .signWith(getKey())
                 .compact();
-
-        return token;
     }
 
     public String getUsername(String token) {

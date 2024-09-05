@@ -14,5 +14,5 @@ import java.util.List;
 public class UserResponse {
     private Long id;
     private String username;
-    private List<String> authorities;
+    private List<String> roles;
 }
