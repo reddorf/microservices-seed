@@ -1,11 +1,15 @@
 server:
-    port: 8080
+  port: 8080
 spring:
-    application:
-        name: gateway-service
+  application:
+    name: gateway-service
 eureka:
-    client:
-        serviceUrl:
-            defaultZone: ${EUREKA_URI:http://localhost:8081/eureka}
-    instance:
-        preferIpAddress: true
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8081/eureka}
+  instance:
+    preferIpAddress: true
+com:
+  marcpinol:
+    jwt:
+      secret: QHsyZFY/O11WNnRUTVEzeTokQ1JDUnBpR3RwIUVGKHA=
