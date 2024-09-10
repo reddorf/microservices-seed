@@ -1,0 +1,28 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: development
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/reddorf/microservices-seed-config.git
+          clone-on-start: true
+      discovery:
+        enabled: true
+        service-id: config-server
+  security:
+    user:
+      name: root
+      password: s3cr3t
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: ${EUREKA_URI:http://localhost:8081/eureka}
+    region: default
+    registry-fetch-interval-seconds: 5
+  instance:
+    preferIpAddress: true
